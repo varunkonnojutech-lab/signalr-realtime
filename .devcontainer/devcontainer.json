@@ -1,0 +1,1 @@
+{"customizations":{"vscode":{"extensions":["ms-dotnettools.csharp"]}},"features":{"ghcr.io/devcontainers/features/docker-in-docker:2":{}},"image":"mcr.microsoft.com/devcontainers/dotnet:1-8-bookworm","name":"signalr-realtime","postCreateCommand":"dotnet restore"}

@@ -1,0 +1,7 @@
+.git
+.github
+.devcontainer
+**/bin
+**/obj
+*.user
+*.suo

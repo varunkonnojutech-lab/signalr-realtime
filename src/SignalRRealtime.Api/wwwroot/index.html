@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SignalR Realtime Lab — Chat + Live Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <p class="eyebrow">ASP.NET Core SignalR · .NET 8</p>
+      <h1>SignalR Realtime Lab</h1>
+      <p class="subtitle">One hub, two realtime patterns: room-based group chat and a server-pushed live dashboard.</p>
+    </div>
+    <div id="connectionStatus" class="status disconnected">Disconnected</div>
+  </header>
+
+  <main class="layout">
+    <section class="card dashboard-card" aria-labelledby="dashboardHeading">
+      <div class="card-heading">
+        <div>
+          <h2 id="dashboardHeading">Live dashboard</h2>
+          <p>Quotes are pushed by a background service every three seconds — no polling, no refresh.</p>
+        </div>
+        <span class="live-dot" aria-label="Live feed"></span>
+      </div>
+      <div id="quoteGrid" class="quote-grid"></div>
+    </section>
+
+    <section class="card chat-card" aria-labelledby="chatHeading">
+      <div class="card-heading">
+        <div>
+          <h2 id="chatHeading">Room chat</h2>
+          <p>Open this page in two tabs, join the same room, and send a message.</p>
+        </div>
+        <span id="presenceCount" class="presence">0 online in room</span>
+      </div>
+
+      <div class="controls">
+        <label>
+          Display name
+          <input id="userName" maxlength="40" value="Varun" autocomplete="name">
+        </label>
+        <label>
+          Room
+          <input id="roomName" maxlength="40" value="lobby" autocomplete="off">
+        </label>
+        <button id="joinButton" type="button">Join room</button>
+        <button id="leaveButton" type="button" class="secondary">Leave</button>
+      </div>
+
+      <ul id="messages" class="messages" aria-live="polite"></ul>
+
+      <form id="messageForm" class="message-form">
+        <label class="sr-only" for="messageInput">Message</label>
+        <input id="messageInput" maxlength="500" placeholder="Type a message…" autocomplete="off">
+        <button type="submit">Send</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    Hub endpoint: <code>/hubs/realtime</code> · REST snapshot: <code>/api/quotes</code> · Broadcast test: <code>POST /api/broadcast</code>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@microsoft/signalr@8.0.7/dist/browser/signalr.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
